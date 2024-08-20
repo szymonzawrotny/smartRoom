@@ -1,0 +1,50 @@
+@import "_functions.scss";
+
+.app{
+    main{
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        width:50vw;
+        height:80vh;
+        display: flex;
+        justify-content: space-between;
+        align-content: space-between;
+        flex-wrap: wrap;
+        transition: .3s ease-in-out;
+        .icon{
+            @include makeCenter();
+            border-radius:15px;
+            background-color: aliceblue;
+            opacity: .8;
+            width:30%;
+            height:30%;
+            transition: transform .3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .icon.choosen{
+            background-color: aquamarine;
+        }
+
+        .icon:hover{
+            transform: scale(1.1);
+        }
+    }
+
+    main.selected{
+        width:25vw;
+        height:90vh;
+        transform: translate(-180%,-50%);
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+        .icon{
+            width:80%;
+            height:10%
+        }
+    }
+}

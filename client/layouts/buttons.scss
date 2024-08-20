@@ -1,0 +1,25 @@
+.app{
+    .info{
+        .database{
+            .buttons{
+                margin:15px;
+                width:25vw;
+                height:10vh;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                button{
+                    padding:15px;
+                    background-color: white;
+                    border-radius: 10px;
+                    border:none;
+                    cursor: pointer;
+                    transition: .3s ease-in-out;
+                }
+                button:hover{
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+}

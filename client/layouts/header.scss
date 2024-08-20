@@ -1,0 +1,95 @@
+@import "_functions.scss";
+
+.app{
+    position: relative;
+    overflow: hidden;
+    .info{
+        position: absolute;
+        right:0;
+        top:10%;
+        background-color: aliceblue;
+        opacity: .8;
+        border-radius: 15px 0 0 15px;
+        width:60vw;
+        height:80vh;
+        z-index:0;
+        transform: translateX(100%);
+        transition: .3s ease-in-out;
+        overflow-y:scroll;
+        padding:30px;
+        line-height: 25px;
+        letter-spacing: 2px;
+        .infoTable{
+            //border:2px solid red;
+            padding:25px;
+            height:30vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: column;
+            h1{
+                position: relative;
+            }
+            h1::before{
+                content: "";
+                position: absolute;
+                top:-40%;
+                left:-10%;
+                width:60%;
+                height:120%;
+                background-color: aquamarine;
+                z-index:-1;
+            }
+            h2{
+                position: relative;
+            }
+            h2::before{
+                content: "";
+                position: absolute;
+                top:-40%;
+                right:-5%;
+                width:40%;
+                height:100%;
+                background-color: aquamarine;
+                z-index:-1;
+            }
+        }
+        .database{
+            padding:25px;
+            height:45vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            h1{
+                position: relative;
+            }
+            h1::before{
+                content: "";
+                position: absolute;
+                top:-40%;
+                left:-10%;
+                width:60%;
+                height:120%;
+                background-color: aquamarine;
+                z-index:-1;
+            }
+        }
+    }
+    .info.showed{
+        transform: translateX(0);
+    }
+    .info::-webkit-scrollbar {
+        width: 12px; /* Szerokość scrollbara */
+    }
+    .info::-webkit-scrollbar-thumb {
+        background-color: #222; /* Kolor "kciuka" scrollbara */
+    }
+    .info::-webkit-scrollbar-track {
+        background-color: aliceblue; /* Kolor tła scrollbara */
+        border-radius: 4px; /* Zaokrąglenie krawędzi tła */
+    }
+    .info::-webkit-scrollbar-thumb:hover {
+        background-color: #444; /* Ciemniejszy kolor "kciuka" po najechaniu */
+      }
+}
