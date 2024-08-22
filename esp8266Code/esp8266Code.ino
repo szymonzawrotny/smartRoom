@@ -1,9 +1,14 @@
-void setup() {
-  // put your setup code here, to run once:
-
+void setup()
+{
+  Serial.begin(9600);
+  Serial.println("esp8266 gotowe");
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void loop()
+{
+  String dataFromArduino = Serial.readStringUntil('\n');
+  
+  Serial.println("esp8266 otrzymał: " + dataFromArduino);
 
+  delay(3000);
 }
