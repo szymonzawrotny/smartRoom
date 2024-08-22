@@ -1,16 +1,40 @@
+import react , {useEffect, useState} from 'react';
 import "@/layouts/header.scss";
 import InfoTable from "./InfoTable";
 import Buttons from "./Buttons";
 
 const Header = ()=>{
+
+    const [data,setData] = useState({
+        info: {
+            temperature: 0,
+            humidity: 0,
+            distance: 0,
+            isLoud: 0,
+            locked: 0,
+            moisture: 0   
+        }
+    });
+
+    const fetchData = ()=>{
+        fetch("http://localhost:5000/api")
+        .then(response=>response.json())
+        .then(data=>setData(data));
+    }
+
+    useEffect(()=>{
+        fetchData();
+        const interval = setInterval(fetchData,1000);
+    },[0]);
+
     return(
         <div className="info">
-            <InfoTable header1="Czy zamknąłeś drzwi?" value="tak" database=""/>
-            <InfoTable header1="Czy coś jest w pokoju?" value="tak" database=""/>
-            <InfoTable header1="Jaka temperatura pokoju??" value="27 stopni" database=""/>
-            <InfoTable header1="Jaka wilgotność pokoju?" value="41%" database=""/>
-            <InfoTable header1="Dzieje się coś głośnego?" value="nie" database=""/>
-            <InfoTable header1="Czy gleba kaktuska wilgotna?" value="tak" database=""/>
+            <InfoTable header1="Czy zamknąłeś drzwi?" value={data.info.locked} database=""/>
+            <InfoTable header1="Czy coś jest w pokoju?" value={data.info.distance} database=""/>
+            <InfoTable header1="Jaka temperatura pokoju??" value={data.info.temperature} database=""/>
+            <InfoTable header1="Jaka wilgotność pokoju?" value={data.info.humidity} database=""/>
+            <InfoTable header1="Dzieje się coś głośnego?" value={data.info.isLoud} database=""/>
+            <InfoTable header1="Czy gleba kaktuska wilgotna?" value={data.info.moisture} database=""/>
             <div className="database">
                 <h1>Cała baza</h1>
                 <Buttons />

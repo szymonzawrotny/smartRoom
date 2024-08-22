@@ -6,9 +6,12 @@ const app = express();
 
 const port = 5000;
 let info = {
-    temp: 27,
-    humi: 40,
-    locked: true
+    temperature: 0,
+    humidity: 0,
+    distance: 0,
+    isLoud: 0,
+    locked: 0,
+    moisture: 0
 };
 
 app.use(bodyParser.json());
@@ -24,9 +27,15 @@ app.get("/api",(req,res)=>{
     })
 })
 
-// app.post("/data",(req,res)=>{
-//     const sensorData = req.body;
-//     console.log(`Odebrano z esp8266 ${sensorData}`);
-//     info = sensorData;
-//     res.send("dane odebrano poprawnie")
-// })
+app.post("/data",(req,res)=>{
+    const sensorData = req.body.value.split(" ");
+
+    info.temperature = sensorData[0];
+    info.humidity = sensorData[1];
+    info.distance = sensorData[2];
+    info.isLoud = sensorData[3];
+    info.locked = sensorData[4];
+    info.moisture = sensorData[5];
+
+    res.send("Dane odebrano poprawnie")
+})

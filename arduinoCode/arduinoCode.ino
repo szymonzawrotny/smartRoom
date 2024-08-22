@@ -61,7 +61,7 @@ void moistureSensor(){
 }
 
 void connectData(){
-  allData = tempText + ", " + humiText + ", " + distanceText + ", " + soundText + ", " + doorText + ", " + moistureText;
+  allData = tempText + " " + humiText + " " + distanceText + " " + soundText + " " + doorText + " " + moistureText;
   Serial.println(allData);
 }
 
