@@ -57,5 +57,5 @@ void loop()
     Serial.println("Rozłączono z WiFi");
   }
 
-  delay(3000);
+  delay(1000);
 }

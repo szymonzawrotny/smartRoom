@@ -20,9 +20,8 @@
         line-height: 25px;
         letter-spacing: 2px;
         .infoTable{
-            //border:2px solid red;
             padding:25px;
-            height:30vh;
+            height:55vh;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -52,6 +51,40 @@
                 height:100%;
                 background-color: aquamarine;
                 z-index:-1;
+            }
+            .dataTable{
+                width:70%;
+                height:50%;
+                border-radius:15px;
+                background-color: white;
+                overflow-y: scroll;
+                padding:30px;
+                line-height: 25px;
+                letter-spacing: 2px;
+                ol{
+                    padding:25px;
+                    cursor:pointer;
+                    li{
+                        margin:20px;
+                    }
+                }
+            }
+            .dataTable::-webkit-scrollbar {
+                width: 12px;
+            }
+            .dataTable::-webkit-scrollbar-thumb {
+                background-color: #222;
+            }
+            .dataTable::-webkit-scrollbar-track {
+                background-color: aliceblue;
+                border-radius: 4px;
+            }
+            .dataTable::-webkit-scrollbar-thumb:hover {
+                background-color: #444; 
+            }
+            p{
+                font-weight: 700;
+                font-size:28px;
             }
         }
         .database{
@@ -91,5 +124,5 @@
     }
     .info::-webkit-scrollbar-thumb:hover {
         background-color: #444; /* Ciemniejszy kolor "kciuka" po najechaniu */
-      }
+    }
 }

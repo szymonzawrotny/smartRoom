@@ -15,6 +15,12 @@ const Header = ()=>{
             moisture: 0   
         }
     });
+    const [tempTable,setTempTable] = useState([]);
+    const [humiTable,setHumiTable] = useState([]);
+    const [distanceTable,setDistanceTable] = useState([]);
+    const [loudnessTable,setLoudnessTable] = useState([]);
+    const [lockedTable,setLockedTable] = useState([]);
+    const [moistureTable,setMoistureTable] = useState([]);
 
     const fetchData = ()=>{
         fetch("http://localhost:5000/api")
@@ -22,19 +28,79 @@ const Header = ()=>{
         .then(data=>setData(data));
     }
 
+    const fetchTemp = ()=>{
+        fetch("http://localhost:5000/tempApi")
+        .then(response=>response.json())
+        .then(data=>setTempTable(data.results));
+    }
+
+    const fetchHumi = ()=>{
+        fetch("http://localhost:5000/humiApi")
+        .then(response=>response.json())
+        .then(data=>setHumiTable(data.results));
+    }
+
+    const fetchDistance = ()=>{
+        fetch("http://localhost:5000/distanceApi")
+        .then(response=>response.json())
+        .then(data=>setDistanceTable(data.results));
+    }
+
+    const fetchLoudness = ()=>{
+        fetch("http://localhost:5000/loudnessApi")
+        .then(response=>response.json())
+        .then(data=>setLoudnessTable(data.results));
+    }
+
+    const fetchLocked = ()=>{
+        fetch("http://localhost:5000/lockedApi")
+        .then(response=>response.json())
+        .then(data=>setLockedTable(data.results));
+    }
+
+    const fetchMoisture = ()=>{
+        fetch("http://localhost:5000/moistureApi")
+        .then(response=>response.json())
+        .then(data=>setMoistureTable(data.results));
+    }
+
     useEffect(()=>{
         fetchData();
-        const interval = setInterval(fetchData,1000);
+        fetchTemp();
+        fetchHumi();
+        fetchDistance();
+        fetchLoudness();
+        fetchLocked();
+        fetchMoisture();
+        setInterval(fetchData,5000);
     },[0]);
 
     return(
         <div className="info">
-            <InfoTable header1="Czy zamknąłeś drzwi?" value={data.info.locked} database=""/>
-            <InfoTable header1="Czy coś jest w pokoju?" value={data.info.distance} database=""/>
-            <InfoTable header1="Jaka temperatura pokoju??" value={data.info.temperature} database=""/>
-            <InfoTable header1="Jaka wilgotność pokoju?" value={data.info.humidity} database=""/>
-            <InfoTable header1="Dzieje się coś głośnego?" value={data.info.isLoud} database=""/>
-            <InfoTable header1="Czy gleba kaktuska wilgotna?" value={data.info.moisture} database=""/>
+            <InfoTable 
+                header1="Czy zamknąłeś drzwi?" 
+                value={data.info.locked} 
+                database={lockedTable}/>
+            <InfoTable 
+                header1="Czy coś jest w pokoju?" 
+                value={data.info.distance} 
+                database={distanceTable}/>
+            <InfoTable 
+                header1="Jaka temperatura pokoju??" 
+                value={`${data.info.temperature}\u00b0C`} 
+                database={tempTable}/>
+            <InfoTable 
+                header1="Jaka wilgotność pokoju?" 
+                value={`${data.info.humidity}%`} 
+                database={humiTable}/>
+            <InfoTable 
+                header1="Dzieje się coś głośnego?" 
+                value={data.info.isLoud} 
+                database={loudnessTable}/>
+            <InfoTable 
+                header1="Czy gleba kaktuska wilgotna?" 
+                value={data.info.moisture} 
+                database={moistureTable}/>
             <div className="database">
                 <h1>Cała baza</h1>
                 <Buttons />
@@ -42,7 +108,7 @@ const Header = ()=>{
                     asd
                 </div>
             </div>
-            <div className="infoTable" style={{padding:"56px"}}>
+            <div className="infoTable" style={{padding:"180px"}}>
                 <h1>Author:</h1>
                 <p style={{fontSize:"48px"}}>Szymon Zawrotny</p>
             </div>

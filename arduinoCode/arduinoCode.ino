@@ -14,7 +14,7 @@ String tempText = "",humiText = "", distanceText = "", soundText = "", doorText 
 String allData = "";
 
 void tempSensor(){
-  delay(2000);
+  delay(1000);
 
   float temp = dht11.readTemperature();
   float humi = dht11.readHumidity();
