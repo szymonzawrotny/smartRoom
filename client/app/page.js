@@ -1,8 +1,8 @@
 'use client'
 import react from 'react';
-import Background from '@/components/Background';
-import Icons from '@/components/Icons';
-import Header from '@/components/Header';
+import Background from '@/layouts/Background';
+import Icons from '@/layouts/Icons';
+import Header from '@/layouts/Header';
 import "./style.scss";
 
 const Home = ()=>{

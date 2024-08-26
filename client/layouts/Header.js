@@ -1,7 +1,8 @@
 import react , {useEffect, useState} from 'react';
-import "@/layouts/header.scss";
+import "@/styles/header.scss";
 import InfoTable from "./InfoTable";
-import Buttons from "./Buttons";
+import DatabaseTable from './DatabaseTable';
+import AuthorPanel from './AuthorPanel';
 
 const Header = ()=>{
 
@@ -75,43 +76,46 @@ const Header = ()=>{
         setInterval(fetchData,5000);
     },[0]);
 
+    const tab = [
+        {
+            tittle: "Czy zamknąłeś drzwi?",
+            value: data.info.locked,
+            database: lockedTable,
+        },
+        {
+            tittle: "Czy coś jest w pokoju?" ,
+            value: data.info.distance,
+            database: distanceTable,
+        },
+        {
+            tittle: "Jaka temperatura pokoju??",
+            value: `${data.info.temperature}\u00b0C`,
+            database: tempTable,
+        },
+        {
+            tittle: "Jaka wilgotność pokoju?",
+            value: `${data.info.humidity}%`,
+            database: humiTable,
+        },
+        {
+            tittle: "Dzieje się coś głośnego?",
+            value: data.info.isLoud,
+            database: loudnessTable,
+        },
+        {
+            tittle: "Czy gleba kaktuska wilgotna?",
+            value: data.info.moisture,
+            database: moistureTable,
+        },
+    ]
+
+    const elements = tab.map(one=><InfoTable key={one.tittle} header1={one.tittle} value={one.value} database={one.database}/>)
+
     return(
         <div className="info">
-            <InfoTable 
-                header1="Czy zamknąłeś drzwi?" 
-                value={data.info.locked} 
-                database={lockedTable}/>
-            <InfoTable 
-                header1="Czy coś jest w pokoju?" 
-                value={data.info.distance} 
-                database={distanceTable}/>
-            <InfoTable 
-                header1="Jaka temperatura pokoju??" 
-                value={`${data.info.temperature}\u00b0C`} 
-                database={tempTable}/>
-            <InfoTable 
-                header1="Jaka wilgotność pokoju?" 
-                value={`${data.info.humidity}%`} 
-                database={humiTable}/>
-            <InfoTable 
-                header1="Dzieje się coś głośnego?" 
-                value={data.info.isLoud} 
-                database={loudnessTable}/>
-            <InfoTable 
-                header1="Czy gleba kaktuska wilgotna?" 
-                value={data.info.moisture} 
-                database={moistureTable}/>
-            <div className="database">
-                <h1>Cała baza</h1>
-                <Buttons />
-                <div className="dataTable">
-                    asd
-                </div>
-            </div>
-            <div className="infoTable" style={{padding:"180px"}}>
-                <h1>Author:</h1>
-                <p style={{fontSize:"48px"}}>Szymon Zawrotny</p>
-            </div>
+            {elements}
+            <DatabaseTable/>
+            <AuthorPanel />
         </div>
     )
 }

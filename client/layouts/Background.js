@@ -1,5 +1,5 @@
 'use client'
-import "@/layouts/background.scss";
+import "@/styles/background.scss";
 
 const Background = ()=>{
     return(

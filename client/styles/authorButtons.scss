@@ -1,0 +1,27 @@
+.app{
+    .info{
+        .infoTable{
+            .buttons{
+                width:40%;
+                height:30%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                button{
+                    padding:15px;
+                    background-color: aquamarine;
+                    border-radius: 10px;
+                    border:none;
+                    cursor: pointer;
+                    transition: .3s ease-in-out;
+                    a{
+                        color:black;
+                    }
+                }
+                button:hover{
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+}

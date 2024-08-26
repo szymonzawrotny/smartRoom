@@ -1,9 +1,9 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
-const String ssid = "";
-const String password = "";
-const String serverName = "";
+const String ssid = "Tenda_171B30";
+const String password = "rocznik2021";
+const String serverName = "http://192.168.1.104:5000/data";
 WiFiClient client;
 
 void setup()

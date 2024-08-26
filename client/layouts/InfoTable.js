@@ -1,3 +1,5 @@
+import "@/styles/infoTable.scss"
+
 const InfoTable = (props)=>{
 
     const elements = props.database.map(one=>{

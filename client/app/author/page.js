@@ -1,5 +1,5 @@
 import react from 'react';
-import Background from '@/components/Background';
+import Background from '@/layouts/Background';
 
 const Home = ()=>{
   return(

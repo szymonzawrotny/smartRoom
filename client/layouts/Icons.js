@@ -1,5 +1,5 @@
 'use client'
-import "@/layouts/icons.scss";
+import "@/styles/icons.scss";
 
 import { IoHome } from "react-icons/io5";
 import { FaDoorOpen, FaDatabase, FaPerson, FaPersonWalkingDashedLineArrowRight } from "react-icons/fa6";
