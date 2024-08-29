@@ -3,6 +3,7 @@
         .infoTable{
             .buttons{
                 width:40%;
+                min-width:200px;
                 height:30%;
                 display: flex;
                 justify-content: space-between;
@@ -14,9 +15,6 @@
                     border:none;
                     cursor: pointer;
                     transition: .3s ease-in-out;
-                    a{
-                        color:black;
-                    }
                 }
                 button:hover{
                     transform: scale(1.1);

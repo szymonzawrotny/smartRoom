@@ -7,21 +7,21 @@ import "@/styles/authorButtons.scss";
 const AuthorButtons = ()=>{
     return (
         <div className="buttons">
-            <button>
-                <a href="https://github.com/szymonzawrotny" target='_blink'>
+            <a href="https://github.com/szymonzawrotny" target='_blink'>
+                <button>
                     <FaGithub size="26"/>
-                </a>
-            </button>
-            <button>
-                <a href="https://www.facebook.com/szymon.zawrotny/" target='_blink'>
+                </button>
+            </a>
+            <a href="https://www.facebook.com/szymon.zawrotny/" target='_blink'>
+                <button>
                     <FaFacebook size="26"/>
-                </a>
-            </button>
-            <button>
-                <a href="https://www.instagram.com/zawruto/" target='_blink'>
+                </button>
+            </a>
+            <a href="https://www.instagram.com/zawruto/" target='_blink'>
+                <button>
                     <AiFillInstagram size="26"/>
-                </a>
-            </button>
+                </button>
+            </a>
         </div>
     )
 }

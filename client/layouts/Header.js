@@ -103,7 +103,7 @@ const Header = ()=>{
             database: loudnessTable,
         },
         {
-            tittle: "Czy gleba kaktuska wilgotna?",
+            tittle: "Co z kaktuskiem?",
             value: data.info.moisture,
             database: moistureTable,
         },

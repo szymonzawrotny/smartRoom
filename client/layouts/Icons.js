@@ -44,7 +44,7 @@ const Icons = ()=>{
         main.classList.add("selected");
         info.classList.add("showed"); 
           
-        const height = iconNumber * document.querySelector(".infoTable").clientHeight + 30;
+        const height = iconNumber * (document.querySelector(".infoTable").clientHeight + 45) + 45;
 
         info.scrollTo({
             behavior: "smooth",

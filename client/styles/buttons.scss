@@ -4,6 +4,7 @@
             .buttons{
                 margin:15px;
                 width:25vw;
+                min-width:400px;
                 height:10vh;
                 display: flex;
                 justify-content: space-between;
@@ -21,6 +22,21 @@
                 }
                 button.selected{
                     background-color: aquamarine;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:600px){
+    .app{
+        .info{
+            .database{
+                .buttons{
+                    min-width:320px;
+                    button{
+                        padding:10px;
+                    }
                 }
             }
         }

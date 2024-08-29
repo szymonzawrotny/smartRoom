@@ -3,9 +3,9 @@ import AuthorButtons from '../components/AuthorButtons';
 
 const AuthorPanel = ()=>{
     return(
-        <div className="infoTable" style={{padding:"120px"}}>
+        <div className="infoTable authorDiv">
             <h1>Author:</h1>
-            <p style={{fontSize:"48px"}}>Szymon Zawrotny</p>
+            <p className='authorP'>Szymon Zawrotny</p>
             <AuthorButtons />
         </div>
     )

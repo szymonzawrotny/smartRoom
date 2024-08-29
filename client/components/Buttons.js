@@ -4,42 +4,25 @@ import { FaTemperatureHigh } from "react-icons/fa";
 import { WiHumidity } from "react-icons/wi";
 import { PiUserSoundFill, PiCactusFill } from "react-icons/pi";
 
-const Buttons = ()=>{
-
-    const handleButton = (e)=>{
-        
-        const elements = [...document.querySelectorAll("button")];
-        elements.forEach(one=>{
-            one.classList.remove("selected");
-        });
-
-        if(e.target.tagName == "svg"){
-            e.target.parentNode.classList.add("selected");
-        } else if(e.target.tagName == "path"){
-            e.target.parentNode.parentNode.classList.add("selected");
-        }else {
-            e.target.classList.add("selected");
-        }
-    }
-
+const Buttons = (props)=>{
     return(
         <div className="buttons">
-            <button onClick={handleButton}>
+            <button onClick={props.handleButton}>
                 <FaDoorOpen size={26}/>
             </button>
-            <button onClick={handleButton}>
+            <button onClick={props.handleButton}>
                 <FaPersonWalkingDashedLineArrowRight size={26}/>
             </button>
-            <button onClick={handleButton}>
+            <button onClick={props.handleButton}>
                 <FaTemperatureHigh size={26}/>
             </button>
-            <button onClick={handleButton}>
+            <button onClick={props.handleButton}>
                 <WiHumidity size={26}/>
             </button>
-            <button onClick={handleButton}>
+            <button onClick={props.handleButton}>
                 <PiUserSoundFill size={26}/>
             </button>
-            <button onClick={handleButton}>
+            <button onClick={props.handleButton}>
                 <PiCactusFill size={26}/>
             </button>
         </div>
