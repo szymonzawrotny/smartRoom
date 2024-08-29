@@ -15,7 +15,7 @@
         transition: .3s ease-in-out;
         .icon{
             @include makeCenter();
-            border-radius:15px;
+            box-shadow: 5px 5px 5px black;
             background-color: aliceblue;
             opacity: .8;
             width:30%;
