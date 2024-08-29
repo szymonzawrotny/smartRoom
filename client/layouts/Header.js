@@ -23,6 +23,8 @@ const Header = ()=>{
     const [lockedTable,setLockedTable] = useState([]);
     const [moistureTable,setMoistureTable] = useState([]);
 
+    const [content,setContent] = useState([]);
+
     const fetchData = ()=>{
         fetch("http://localhost:5000/api")
         .then(response=>response.json())
@@ -63,6 +65,53 @@ const Header = ()=>{
         fetch("http://localhost:5000/moistureApi")
         .then(response=>response.json())
         .then(data=>setMoistureTable(data.results));
+    }
+
+    const handleButton = (e)=>{
+        
+        let dataTable;
+        const elements = [...document.querySelectorAll("button")];
+        elements.forEach(one=>{
+            one.classList.remove("selected");
+        });
+
+        if(e.target.tagName == "svg"){
+            e.target.parentNode.classList.add("selected");
+            dataTable = e.target.parentNode.getAttribute("data-table");
+        } else if(e.target.tagName == "path"){
+            e.target.parentNode.parentNode.classList.add("selected");
+            dataTable = e.target.parentNode.parentNode.getAttribute("data-table");
+        }else {
+            e.target.classList.add("selected");
+            dataTable = e.target.getAttribute("data-table");
+        }
+
+        switch(dataTable){
+            case "locked":{
+                setContent(lockedTable);
+            };
+            break;
+            case "distance":{
+                setContent(distanceTable);
+            };
+            break;
+            case "temperature":{
+                setContent(tempTable);
+            };
+            break;
+            case "humidity":{
+                setContent(humiTable);
+            };
+            break;
+            case "loudness":{
+                setContent(loudnessTable);
+            };
+            break;
+            case "cactus":{
+                setContent(moistureTable);
+            };
+            break;
+        }
     }
 
     useEffect(()=>{
@@ -114,7 +163,7 @@ const Header = ()=>{
     return(
         <div className="info">
             {elements}
-            <DatabaseTable/>
+            <DatabaseTable handleButton={handleButton} content={content}/>
             <AuthorPanel />
         </div>
     )

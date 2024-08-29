@@ -33,6 +33,7 @@ let info = {
 let doorLastState = 0;
 let cactusLastState = 0;
 let distanceLastState = 0;
+let cronIteration = 0;
 
 app.get("/api",(req,res)=>{
     res.json({
@@ -48,17 +49,24 @@ app.post("/data",(req,res)=>{
     info.temperature = sensorData[0];
     info.humidity = sensorData[1];
 
-    cron.schedule('0 0 * * *',()=>{
+    cron.schedule('13 00 * * *',()=>{
+        if(cronIteration == 0){
+            let query = `insert into temperature values(NULL,${sensorData[0]},CURDATE(),CURTIME())`;
+            conn.query(query,(err,results)=>{
+                if(err) console.log(err);
+            })
 
-        let query = `insert into temperature values(NULL,${sensorData[0]},CURDATE(),CURTIME())`;
-        conn.query(query,(err,results)=>{
-            if(err) console.log(err);
-        })
+            query = `insert into humidity values(NULL,${sensorData[1]},CURDATE(),CURTIME())`;
+            conn.query(query,(err,results)=>{
+                if(err) console.log(err);
+            })
 
-        query = `insert into humidity values(NULL,${sensorData[1]},CURDATE(),CURTIME())`;
-        conn.query(query,(err,results)=>{
-            if(err) console.log(err);
-        })
+            cronIteration++;
+        }
+    })
+
+    cron.schedule('14 00 * * *',()=>{
+        cronIteration = 0;
     })
 
     if(sensorData[2] <= 20 && distanceLastState != 1){
