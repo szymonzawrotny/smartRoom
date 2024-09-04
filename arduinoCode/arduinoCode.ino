@@ -10,7 +10,7 @@ int distance;
 const int soundPin = 3;
 const int doorPin = 6;
 
-String tempText = "",humiText = "", distanceText = "", soundText = "", doorText = "",moistureText = "";
+String sensorData[6];
 String allData = "";
 
 void tempSensor(){
@@ -19,8 +19,8 @@ void tempSensor(){
   float temp = dht11.readTemperature();
   float humi = dht11.readHumidity();
 
-  tempText = String(temp);
-  humiText = String(humi);
+  sensorData[0] = String(temp);
+  sensorData[1] = String(humi);
 }
 
 void moveSensor(){
@@ -33,45 +33,30 @@ void moveSensor(){
   duration = pulseIn(echoPin,HIGH);
   distance = duration * 0.034 /2;
 
-  distanceText = String(distance);
+  sensorData[2] = String(distance);
 }
 
 void soundSensor(){
   int sensorValue = digitalRead(soundPin);
-
-  // if(sensorValue) soundText = "Wykryto hałas";
-  // else soundText = "cisza";
-
-  soundText = sensorValue;
+  sensorData[3] = sensorValue;
 }
 
 void doorSensor(){
   int doorState = digitalRead(doorPin);
-
-  // if(doorState) doorText = "otwarte";
-  // else doorText = "zamkniete";
-
-  doorText= doorState;
+  sensorData[4]= doorState;
 }
 
 void moistureSensor(){
   int value = analogRead(A2);
 
-  moistureText = String(value);
+  sensorData[5] = String(value);
 }
 
 void connectData(){
-  allData = tempText + " " + humiText + " " + distanceText + " " + soundText + " " + doorText + " " + moistureText;
+  for(int i=0;i<6;i++){
+    allData += sensorData[i] + " ";
+  }
   Serial.println(allData);
-}
-
-void mainApp(){
-  tempSensor();
-  moveSensor();
-  soundSensor();
-  doorSensor();
-  moistureSensor();
-  connectData();
 }
 
 void setup(){
@@ -84,7 +69,13 @@ void setup(){
 }
 
 void loop(){
-  mainApp();
+  tempSensor();
+  moveSensor();
+  soundSensor();
+  doorSensor();
+  moistureSensor();
+  connectData();
+  allData = "";
 
   delay(1000);
 }
